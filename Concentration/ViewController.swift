@@ -41,8 +41,9 @@ class ViewController: UIViewController {
     
     @IBAction func startNewGameButton(_ sender: Any) {
         flipCount = 0
-        game.resetGame(numberOfPairsOfCards: (сardButtonsOutletCollection.count + 1) / 2)
         
+        game.resetGame(numberOfPairsOfCards: (сardButtonsOutletCollection.count + 1) / 2)
+        emojiChoices = ["🧟‍♂️", "🧟‍♀️", "💀" ,"☠️", "👁", "👀", "😈", "👹", "🤡", "🎃", "🦇", "🔮", "👻", "🕸", "🕷", "👿", "👺"]
         updateViewFromModel()
     }
     
