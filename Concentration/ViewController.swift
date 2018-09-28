@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeEmojiTheme()
         
         //Make the corners of the cards round
         for card in сardButtonsOutletCollection {
@@ -41,9 +42,8 @@ class ViewController: UIViewController {
     
     @IBAction func startNewGameButton(_ sender: Any) {
         flipCount = 0
-        
+        changeEmojiTheme()
         game.resetGame(numberOfPairsOfCards: (сardButtonsOutletCollection.count + 1) / 2)
-        emojiChoices = ["🧟‍♂️", "🧟‍♀️", "💀" ,"☠️", "👁", "👀", "😈", "👹", "🤡", "🎃", "🦇", "🔮", "👻", "🕸", "🕷", "👿", "👺"]
         updateViewFromModel()
     }
     
@@ -60,7 +60,24 @@ class ViewController: UIViewController {
             }
         }
     }
-    var emojiChoices = ["🧟‍♂️", "🧟‍♀️", "💀" ,"☠️", "👁", "👀", "😈", "👹", "🤡", "🎃", "🦇", "🔮", "👻", "🕸", "🕷", "👿", "👺"]
+    
+    func changeEmojiTheme() {
+        switch arc4random_uniform(3) {
+            
+        case 0: emojiChoices = ["🧟‍♂️", "🧟‍♀️", "💀" ,"☠️", "👁", "👀", "😈", "👹", "🤡", "🎃", "🦇", "🔮", "👻", "🕸", "🕷", "👿", "👺"]
+            
+            
+        case 1: emojiChoices = ["😀", "😃", "😇" ,"🙃", "😡", "🤬", "🤯", "😎", "😤", "🤪", "😶", "😬", "😴", "🤤", "🤠", "🤐", "😳"]
+            
+            
+        case 2: emojiChoices = ["🐶", "🐱", "🐭" ,"🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮", "🐷", "🐸", "🐵", "🙈", "🙉"]
+            
+        default: emojiChoices = ["🧟‍♂️", "🧟‍♀️", "💀" ,"☠️", "👁", "👀", "😈", "👹", "🤡", "🎃", "🦇", "🔮", "👻", "🕸", "🕷", "👿", "👺"]
+        }
+
+    }
+    var emojiChoices = [String]()
+    
     
     var emoji = [Int: String]()
     
@@ -68,8 +85,8 @@ class ViewController: UIViewController {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
-            
         }
+        
         return emoji[card.identifier] ?? "?"
     }
     
