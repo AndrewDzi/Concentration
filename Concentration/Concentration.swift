@@ -17,7 +17,7 @@ class Concentration {
     
     
     func chooseCard(at index: Int) {
-        cards[index].wasSeen = true
+        score -= 1
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 //check if cards match
