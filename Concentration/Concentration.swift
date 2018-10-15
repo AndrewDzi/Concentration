@@ -12,17 +12,23 @@ class Concentration {
     
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard: Int?
+    var choosenCards = [Int]()
+    var score = 0
+    
     
     func chooseCard(at index: Int) {
+        cards[index].wasSeen = true
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 //check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    score += 2
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
+                
             } else {
                 //either no cards or 2 cards are face up
                 for flipDownIndex in cards.indices {
@@ -30,6 +36,7 @@ class Concentration {
                 }
                 cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
+                
             }
         }
     }
@@ -51,7 +58,12 @@ class Concentration {
         // TODO: Shuffle the cards
         cards.shuffle()
     }
+    
 }
+
+
+
+
 
 extension MutableCollection {
     /// Shuffles the contents of this collection.
