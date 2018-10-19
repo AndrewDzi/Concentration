@@ -31,7 +31,6 @@ class ViewController: UIViewController {
     
     @IBAction func touchCard(_ sender: UIButton) {
         flipCount += 1
-//        game.score -= 1
         if let cardNumber = сardButtonsOutletCollection.index(of: sender) {
             
             game.chooseCard(at: cardNumber)
